@@ -21,20 +21,20 @@ from socket import error
 
 from alerts import BasicMatchString, Alerter
 from util import EAException
-from util import elastalert_logger, pretty_ts, ts_to_dt
+from util import elastalert_logger, pretty_ts, ts_to_dt, lookup_es_key
+from util import build_es_conn_config
 
 from elasticsearch.client import Elasticsearch
 from elasticsearch.exceptions import ElasticsearchException
 
 
-
-#--- Helpers ----------------------------------------------
 def _convert_to_strings(list_of_strs):
     if isinstance(list_of_strs, (list, tuple)):
         result = COMMASPACE.join(list_of_strs)
     else:
         result = list_of_strs
     return _encode_str(result)
+
 
 def _encode_str(s):
     if type(s) == types.UnicodeType:
@@ -43,6 +43,7 @@ def _encode_str(s):
 
 # Supports:
 #   email*
+#   email_from_field
 #   email_reply_to
 #   num_events
 #   smtp_host
@@ -92,7 +93,6 @@ class EmailJinjaAlerter(Alerter):
                 text = f.read()
         else:
             text = '{{ matches|length }} items found'
-
         if 'template_html_content' in self.rule:
             html = self.rule['template_html_content']
         elif 'template_html_file' in self.rule:
@@ -101,7 +101,19 @@ class EmailJinjaAlerter(Alerter):
         else:
             html = '{{ matches|length }} items found'
 
-        es_conn_conf = elastalert.ElastAlerter.build_es_conn_config(self.rule)
+        if 'email_from_field' in self.rule:
+            recipient = lookup_es_key(matches[0], self.rule['email_from_field'])
+            if isinstance(recipient, basestring):
+                if '@' in recipient:
+                    to_addr = [recipient]
+                elif 'email_add_domain' in self.rule:
+                    to_addr = [recipient + self.rule['email_add_domain']]
+            elif isinstance(recipient, list):
+                to_addr = recipient
+                if 'email_add_domain' in self.rule:
+                    to_addr = [name + self.rule['email_add_domain'] for name in to_addr]
+
+        es_conn_conf = util.build_es_conn_config(self.rule)
 
         env = {
             'rule': self.rule,
@@ -109,7 +121,7 @@ class EmailJinjaAlerter(Alerter):
             'pipeline': self.pipeline,
             'jira_server': self.pipeline['jira_server'] if (self.pipeline and 'jira_server' in self.pipeline) else None,
             'jira_ticket': self.pipeline['jira_ticket'] if (self.pipeline and 'jira_ticket' in self.pipeline) else None,
-            'es': elastalert.ElastAlerter.new_elasticsearch(es_conn_conf),
+            'es': util.elasticsearch_client(es_conn_conf),
             'json': json,
             'util': util,
             'datetime': datetime,
@@ -122,7 +134,10 @@ class EmailJinjaAlerter(Alerter):
         messageRoot = MIMEMultipart('related')
         messageRoot['Subject'] = _encode_str(self.create_title(matches))
         messageRoot['From']    = _encode_str(self.from_addr)
-        messageRoot['To']      = _convert_to_strings(self.rule['email'])
+        if 'email_from_field' in self.rule:
+            messageRoot['To'] = _convert_to_strings(to_addr)
+        else:
+            messageRoot['To'] = _convert_to_strings(self.rule['email'])
 
         if self.rule.get('email_reply_to'):
             messageRoot['Reply-To'] = _convert_to_strings(self.rule.get('email_reply_to'))
@@ -173,14 +188,14 @@ class EmailJinjaAlerter(Alerter):
         # Assume rule['alert_subject'] to be a jinja templated string. See Alerter.create_title()
         subject = self.rule['alert_subject']
 
-        es_conn_conf = elastalert.ElastAlerter.build_es_conn_config(self.rule)
+        es_conn_conf = util.build_es_conn_config(self.rule)
         env = {
             'rule': self.rule,
             'matches': matches,
             'pipeline': self.pipeline,
             'jira_server': self.pipeline['jira_server'] if (self.pipeline and 'jira_server' in self.pipeline) else None,
             'jira_ticket': self.pipeline['jira_ticket'] if (self.pipeline and 'jira_ticket' in self.pipeline) else None,
-            'es': elastalert.ElastAlerter.new_elasticsearch(es_conn_conf),
+            'es': util.elasticsearch_client(es_conn_conf),
             'util': util,
             'datetime': datetime,
         }
