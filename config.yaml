@@ -1,0 +1,12 @@
+es_host:
+es_port:
+use_ssl: True
+verify_certs: False
+es_username:
+es_password:
+smtp_host:
+smtp_host: smtp.gmail.com
+smtp_port: 465
+smtp_ssl : true
+from_addr: services@iinfosec.com
+smtp_auth_file: /etc/elastalert/smtp_auth_file.yml

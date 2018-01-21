@@ -12,6 +12,6 @@ class MyEnhancement(BaseEnhancement):
             ws.doLogin('reports', 'kXtfcZseUTMwzUJW')
             vt_account = ws.doQuery("select * from Accounts where cf_1072='" +
                                     match['client_name'] + "';")
-            match['c1'] = vt_account[0]['cf_1046']
-            match['c2'] = vt_account[0]['cf_1048']
-            match['c3'] = vt_account[0]['cf_1070']
+            match['email'][0] = vt_account[0]['cf_1046']
+            match['email'][1] = vt_account[0]['cf_1048']
+            match['email'][2] = vt_account[0]['cf_1070']

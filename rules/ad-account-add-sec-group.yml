@@ -1,0 +1,12 @@
+type: any
+alert: "Account added to Protected Security Group"
+index: "active-beats-*"
+match_enhancements: vtiger
+filter:
+- query:
+    query_string:
+      query: ""
+email_from_field: email
+summary_table_fields:
+    -
+    - 
