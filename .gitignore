@@ -12,6 +12,7 @@ env/
 docs/build/
 build/
 config.yaml
+smtp-auth.yaml
 
 my_rules
 *.swp
