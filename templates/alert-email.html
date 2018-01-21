@@ -1,25 +1,6 @@
-<p>{{ full_client_name }}<br /> <br /> Please review the alert below regarding activity or a potential incident on your network.<br /> <br /> Regards,<br /> Ingalls Security Operations Center<br /> <img src="\&quot;https://vtiger.iinfosec.net/test/upload/images/Google-1-01.png\&quot;" alt="\&quot;Ingalls" /></p>
+<p>{{ full_client_name }}<br /> <br />
+Please review the alert below regarding activity or a potential incident on your network.
+<br /> <br /> Regards,<br />
+Ingalls Security Operations Center<br />
+<img src="https://vtiger.iinfosec.net/test/upload/images/Google-1-01.png" alt="Ingalls" /></p>
 <hr />
-<!-- <table width="\&quot;589\&quot;">
-<tbody>
-<tr>
-<td><strong>Title</strong></td>
-<td>Ingalls Alert - Account added to Protected Security Group​</td>
-</tr>
-<tr>
-<td><strong>Status</strong></td>
-<td>Escalated Immediately to Client</td>
-</tr>
-<tr>
-<td><strong>Number of Events</strong></td>
-<td>{{ None }}</td>
-</tr>
-</tbody>
-</table>
-<table width="\&quot;589\&quot;">
-<tbody>
-<tr>
-<td>The following users were added to Protected Security Groups in your domain. Please validate all account modifications or reach out to your Ingalls representative if you have questions.{{#ctx.payload.hits.hits}}{{#_source}}<br /> <strong>Time</strong>:{{@timestamp}}<br /> <strong>Event ID</strong>:{{event_id}}<br /> <strong>Client Name</strong>:{{client_name}}<br /> <strong>Sensor Name</strong>:{{sensor_name}}<br /> <strong>Hostname</strong>:{{beat.name}}<br /> <strong>Username</strong>:{{event_data.MemberName}}<br /> <strong>Changed By</strong>:{{event_data.SubjectUserName}}<br /> <strong>Target Group</strong>:{{event_data.TargetUserName}}<br /> {{/_source}}<br />{{/ctx.payload.hits.hits}}</td>
-</tr>
-</tbody>
-</table> -->
