@@ -1,0 +1,11 @@
+type: any
+alert: email
+index: "active-beats-*"
+match_enhancements:
+  - "vtiger.vtiger.clientAlias"
+filter:
+- query:
+    query_string:
+      query: "type:wineventlog AND event_id:4740"
+email: monitoring@iinfosec.com
+email_from_field: email

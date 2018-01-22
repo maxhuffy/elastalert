@@ -1,0 +1,11 @@
+type: any
+alert: email
+index: "active-other-*"
+match_enhancements:
+  - "vtiger.vtiger.clientAlias"
+filter:
+- query:
+    query_string:
+      query: "type:pafw AND event_type:\"THREAT\" AND !event_subtype:\"vulnerability\" AND !event_subtype:\"url\""
+email: monitoring@iinfosec.com
+email_from_field: email

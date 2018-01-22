@@ -1,0 +1,35 @@
+type: any
+alert:
+  - emailjinja.EmailJinjaAlerter
+index: "active-beats-*"
+match_enhancements:
+  - "vtiger.vtiger.clientAlias"
+filter:
+- query:
+    query_string:
+      query: "type:wineventlog AND client_name:iis"
+email_from_field: email
+email: evans.foster@iinfosec.com
+template_html_file: /Users/efoster/git/elastalert/templates/alert-email.html
+# Supports:
+#   email*
+#   email_from_field
+#   email_reply_to
+#   num_events
+#   smtp_host
+#   smtp_port
+#   smtp_ssl
+#   smtp_auth_file
+#   from_addr
+#   template_text_content
+#   template_text_file
+#   template_html_content
+#   template_html_file
+#
+# (* required)
+# alert_subject: "Ingalls Alert - Testing Subject"
+# alert_text_args:
+#   - message
+#   - event_data.SourceAddress
+# alert_text: "{0} \n\n\n\n\n\n\n\n\n {1}"
+# alert_text_type: alert_text_only
