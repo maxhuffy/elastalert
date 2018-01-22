@@ -7,9 +7,5 @@ filter:
 - query:
     query_string:
       query: "type:wineventlog AND event_id:4740"
-email: evans.foster@iinfosec.com
-summary_table_fields:
-    - event_data.SubjectUserName
-    - event_data.MemberName
-    - event_data.TargetUserName
-    - event_data.SubjectDomainName
+email: monitoring@iinfosec.com
+email_from_field: email

@@ -7,6 +7,5 @@ filter:
 - query:
     query_string:
       query: "type:pafw AND event_subtype:\"url\" AND !category:\"web-advertisements\" AND !category:\"questionable\" AND !category:\"weapons\" AND action:\"block-url\" AND !miscellaneous:*.explicit.bing.com AND !miscellaneous:*.explicit.bing.net"
-email: evans.foster@iinfosec.com
-summary_table_fields:
-    -
+email: monitoring@iinfosec.com
+email_from_field: email
