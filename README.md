@@ -36,5 +36,7 @@ password:
 Instructions:
 ~~~~
 docker pull iinfosec/elasticsearch:elastalert
-docker run -it iinfosec/elasticsearch:elastalert python /elastalert/elastalert/elastalert.py
+docker run -d --restart=always iinfosec/elasticsearch:elastalert
+docker cp . iinfosec/elasticsearch:elastalert
+docker exec
 ~~~~
