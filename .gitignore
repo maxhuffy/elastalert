@@ -14,6 +14,8 @@ src/docs/build/
 src/build/
 src/config.yaml
 src/smtp-auth.yaml
+.gitignore
+.DS_Store
 
 my_rules
 *.swp
