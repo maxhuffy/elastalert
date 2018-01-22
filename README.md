@@ -36,5 +36,5 @@ password:
 Instructions:
 ~~~~
 docker build . -t elastalert
-docker run -it elastalert /usr/bin/python /elastalert/elastalert/elastalert.py
+docker run elastalert
 ~~~~
