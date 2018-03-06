@@ -28,3 +28,5 @@ ENV PYTHONUNBUFFERED 1
 COPY ./src /elastalert
 
 RUN pip install -r /elastalert/requirements.txt
+
+CMD ["/usr/bin/python", "/elastalert/elastalert/elastalert.py"]  

@@ -1,7 +1,7 @@
 type: any
 alert:
   - slack
-index: "beat-*"
+index: "beat"
 filter:
 - query:
     query_string:
