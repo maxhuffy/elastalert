@@ -145,7 +145,7 @@ a[x-apple-data-detectors] {
 <tbody>
 <tr>
 <td align="left" valign="top" style="font-family: arial,helvetica,sans-serif; font-size: 12px; padding: 4px 4px 4px 4px;"> <br />
-	<strong>Time</strong>: {{@timestamp}} <br /> <strong>Event ID</strong>: {{event_id}} <br /> <strong>Client Name</strong>: {{client_name}} <br />
+	<strong>Time</strong>: {{ matches.timestamp }} <br /> <strong>Event ID</strong>: {{event_id}} <br /> <strong>Client Name</strong>: {{client_name}} <br />
 	<strong>Sensor Name</strong>: {{sensor_name}} <br /> <strong>Hostname</strong>: {{beat.name}} <br /> <strong>Username</strong>: {{event_data.MemberName}} <br />
 	<strong>Changed By</strong>: {{event_data.SubjectUserName}} <br /> <strong>Target Group</strong>: {{event_data.TargetUserName}} <br />
 	<br /> <br />
