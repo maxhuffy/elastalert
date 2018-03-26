@@ -7,4 +7,4 @@ template_html_file: templates/alert-email.html
 filter:
 - query:
     query_string:
-      query: "client_name:ege AND event_id:4728"
+      query: "client_name:ege AND event_id:4728 AND @timestamp:[\"2015-11-04T11:12:13\" TO \"2018-11-04T11:20:20\"]"
