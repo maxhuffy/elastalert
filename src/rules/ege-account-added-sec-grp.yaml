@@ -1,0 +1,18 @@
+type: any
+alert:
+  - slack
+index: "beat"
+filter:
+- query:
+    query_string:
+      query: "client_name:ege AND event_id:4728"
+alert_text_args:
+  - message
+  - client_name
+  - event_id
+  - event_data.MemberName
+  - event_data.SubjectUserName
+  - event_data.TargetUserName
+alert_text: "Active Directory Security Event - Account added to globally protected security group\nThe user object, {3}, was added to the globally protected security group, {5}, by the administrator, {4}. If this modification to group membership is unexpected, please contact your Ingalls representative for more information.\nFull Active Directory event message:\n{0}"
+slack_webhook_url: https://hooks.slack.com/services/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
+alert_text_type: alert_text_only
