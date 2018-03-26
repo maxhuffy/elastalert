@@ -107,15 +107,11 @@ a[x-apple-data-detectors] {
             <tr>
               <td><table cellspacing="0" cellpadding="0" border="0" width="100%">
                   <tr>
-                    <td style="padding: 40px; font-family: sans-serif; font-size: 15px; mso-height-rule: exactly; line-height: 20px; color: #555555;"><span style="font-family: arial,helvetica,sans-serif; font-size: 12px;">{{ full_company_name }}<br /> <br />
-	Please review the alert below regarding activity or a potential incident on your network.<br /> <br />
+                    <td style="padding: 40px; font-family: sans-serif; font-size: 15px; mso-height-rule: exactly; line-height: 20px; color: #555555;"><span style="font-family: arial,helvetica,sans-serif; font-size: 12px;">
+	A user was recently added to a globally protected security group in your domain. Please review the information below:<br /> <br />
 
 	Regards,<br />
 	Ingalls Security Operations Center</span>
-  Matches Debug: <br />
-  {{ matches }}
-
-
 <p>&nbsp;</p>
 
 <table width="100%" border="0" cellpadding="0" cellspacing="0" style="background-color: #f3f3f4;">
@@ -137,7 +133,7 @@ a[x-apple-data-detectors] {
 <table style="background-color: #034638; height: 21px;" width="100%">
 <tbody>
 <tr>
-<th align="left" valign="top" style="font-family: arial,helvetica,sans-serif; font-size: 12px; color: #ffffff; padding: 4px;">{{timestamp}}<strong> - </strong>Ingalls Alert - Active Directory Security Event</th>
+<th align="left" valign="top" style="font-family: arial,helvetica,sans-serif; font-size: 12px; color: #ffffff; padding: 4px;">{{matches[0].timestamp}}<strong> - </strong>Ingalls Alert - User added to protected security group</th>
 </tr>
 </tbody>
 </table>
@@ -146,9 +142,14 @@ a[x-apple-data-detectors] {
 <tr>
 <td align="left" valign="top" style="font-family: arial,helvetica,sans-serif; font-size: 12px; padding: 4px 4px 4px 4px;"> <br />
   {% for match in matches %}
-	<strong>Time</strong>: {{ match.timestamp }} <br /> <strong>Event ID</strong>: {{ match.event_id }} <br /> <strong>Client Name</strong>: {{match.client_name}} <br />
-	<strong>Sensor Name</strong>: {{match.sensor_name}} <br /> <strong>Hostname</strong>: {{match.beat.hostname}} <br /> <strong>Username</strong>: {{match.MemberName}} <br />
-	<strong>Changed By</strong>: {{match.SubjectUserName}} <br /> <strong>Target Group</strong>: {{match.event_data.TargetUserName}} <br />
+	<strong>Time</strong>: {{ match.timestamp }} <br />
+  <strong>Event ID</strong>: {{ match.event_id }} <br />
+  <strong>Client Name</strong>: {{match.client_name}} <br />
+	<strong>Sensor Name</strong>: {{match.sensor_name}} <br />
+  <strong>Hostname</strong>: {{match.beat.hostname}} <br />
+  <strong>Username</strong>: {{match.event_data.MemberName}} <br />
+	<strong>Changed By</strong>: {{match.event_data.SubjectUserName}} <br />
+  <strong>Target Group</strong>: {{match.event_data.TargetUserName}} <br />
 	<br /> <br />
 	</td>
   {% endfor %}
