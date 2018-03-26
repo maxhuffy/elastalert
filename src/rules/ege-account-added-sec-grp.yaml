@@ -1,8 +1,7 @@
 type: any
-alert:
-  - email-jinja
+alert: 'emailjinja.EmailJinjaAlerter'
+email: 'evans.foster@iinfosec.com'
 index: "beat"
-email: evans.foster@iinfosec.com
 template_html_file: templates/alert-email.html
 #email_from_field: emails
 filter:
