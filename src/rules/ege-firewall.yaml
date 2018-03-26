@@ -1,0 +1,16 @@
+type: any
+alert:
+  - slack
+index: "syslog"
+filter:
+- query:
+    query_string:
+      query: "client_name:ege AND 'vulnerability' AND event_type:firewall"
+alert_text_args:
+  - message
+  - client_name
+  - log_source
+  - event_type
+alert_text: "Firewall vulnerability event on EGE PA Device\nclient: {1}\nLog Source: {2}\n Event Type:{3}\n Full message:{0}\n"
+slack_webhook_url: https://hooks.slack.com/services/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
+alert_text_type: alert_text_only
