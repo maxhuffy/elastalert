@@ -125,7 +125,7 @@ class EmailJinjaAlerter(Alerter):
             'json': json,
             'util': util,
             'datetime': datetime,
-            'kibana_context_args': kibana4_context_args,
+            'kibana_context_args': kibana4_context_args
         }
 
         text = Environment().from_string(text).render(**env)

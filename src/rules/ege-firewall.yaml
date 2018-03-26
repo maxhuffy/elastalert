@@ -11,6 +11,6 @@ alert_text_args:
   - client_name
   - log_source
   - event_type
-alert_text: "Firewall vulnerability event on EGE PA Device\nclient: {1}\nLog Source: {2}\n Event Type:{3}\n Full message:{0}\n"
-slack_webhook_url: https://hooks.slack.com/services/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
+alert_text: "Firewall vulnerability event on EGE PA Device. Please investigate each event and document in a ticket. \nclient: {1}\nLog Source: {2}\n Event Type:{3}\n Full message:{0}\n"
+slack_webhook_url: https://hooks.slack.com/services/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
 alert_text_type: alert_text_only
