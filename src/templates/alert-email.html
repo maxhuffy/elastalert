@@ -107,12 +107,12 @@ a[x-apple-data-detectors] {
             <tr>
               <td><table cellspacing="0" cellpadding="0" border="0" width="100%">
                   <tr>
-                    <td style="padding: 40px; font-family: sans-serif; font-size: 15px; mso-height-rule: exactly; line-height: 20px; color: #555555;"><span style="font-family: arial,helvetica,sans-serif; font-size: 12px;">{{full_company_name}}<br /> <br />
+                    <td style="padding: 40px; font-family: sans-serif; font-size: 15px; mso-height-rule: exactly; line-height: 20px; color: #555555;"><span style="font-family: arial,helvetica,sans-serif; font-size: 12px;">{{ full_company_name }}<br /> <br />
 	Please review the alert below regarding activity or a potential incident on your network.<br /> <br />
 
 	Regards,<br />
 	Ingalls Security Operations Center</span>
-  Matches:
+  Matches Debug: <br />
   {{ matches }}
 
 
@@ -130,7 +130,7 @@ a[x-apple-data-detectors] {
 </tr>
 <tr>
 <td align="left" valign="top" nowrap="nowrap" style="font-family: arial,helvetica,sans-serif; font-size: 12px; padding: 4px 0px 2px 4px;"><strong>Number of Events</strong></td>
-<td align="left" valign="top" style="font-family: arial,helvetica,sans-serif; font-size: 12px; padding: 4px 0px 2px 4px;">{{ctx.payload.hits.total}}</td>
+<td align="left" valign="top" style="font-family: arial,helvetica,sans-serif; font-size: 12px; padding: 4px 0px 2px 4px;">{{matches | length}}</td>
 </tr>
 </tbody>
 </table>
@@ -145,11 +145,13 @@ a[x-apple-data-detectors] {
 <tbody>
 <tr>
 <td align="left" valign="top" style="font-family: arial,helvetica,sans-serif; font-size: 12px; padding: 4px 4px 4px 4px;"> <br />
-	<strong>Time</strong>: {{ matches.timestamp }} <br /> <strong>Event ID</strong>: {{event_id}} <br /> <strong>Client Name</strong>: {{client_name}} <br />
-	<strong>Sensor Name</strong>: {{sensor_name}} <br /> <strong>Hostname</strong>: {{beat.name}} <br /> <strong>Username</strong>: {{event_data.MemberName}} <br />
-	<strong>Changed By</strong>: {{event_data.SubjectUserName}} <br /> <strong>Target Group</strong>: {{event_data.TargetUserName}} <br />
+  {% for match in matches %}
+	<strong>Time</strong>: {{ match.timestamp }} <br /> <strong>Event ID</strong>: {{ match.event_id }} <br /> <strong>Client Name</strong>: {{match.client_name}} <br />
+	<strong>Sensor Name</strong>: {{match.sensor_name}} <br /> <strong>Hostname</strong>: {{match.beat.hostname}} <br /> <strong>Username</strong>: {{match.MemberName}} <br />
+	<strong>Changed By</strong>: {{match.SubjectUserName}} <br /> <strong>Target Group</strong>: {{match.event_data.TargetUserName}} <br />
 	<br /> <br />
 	</td>
+  {% endfor %}
 </tr>
 </tbody>
 </table>
