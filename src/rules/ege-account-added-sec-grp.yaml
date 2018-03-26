@@ -1,6 +1,6 @@
 type: any
 alert:
-  - emailjinja
+  - email-jinja
 index: "beat"
 email: evans.foster@iinfosec.com
 template_html_file: templates/alert-email.html
