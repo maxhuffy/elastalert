@@ -1,16 +1,21 @@
 type: any
 alert:
+  - email
   - slack
 index: "syslog"
 filter:
 - query:
     query_string:
-      query: "client_name:ege AND 'vulnerability' AND event_type:firewall AND !'Informational'"
+      query: "client_name:ege AND log_source:syslog AND !'web-advertisements' AND !'questionable' AND !'weapons' AND \"block-url\" AND !\"*.explicit.bing.net/\" AND !\"cdn.clear.link/\""
+
 alert_text_args:
   - message
   - client_name
   - log_source
   - event_type
-alert_text: "Firewall vulnerability event on EGE PA Device. Please investigate each event and document in a ticket. \nclient: {1}\nLog Source: {2}\n Event Type:{3}\n Full message:{0}\n"
-slack_webhook_url: https://hooks.slack.com/services/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
+
+alert_text: "URL block event detected on your Palo Alto Device.\n\nFull Message:\n {0}"
 alert_text_type: alert_text_only
+slack_webhook_url: https://hooks.slack.com/services/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
+email:
+  - evans.foster@iinfosec.com
