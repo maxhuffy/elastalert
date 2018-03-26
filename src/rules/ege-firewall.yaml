@@ -5,7 +5,7 @@ index: "syslog"
 filter:
 - query:
     query_string:
-      query: "client_name:ege AND 'vulnerability' AND event_type:firewall"
+      query: "client_name:ege AND 'vulnerability' AND event_type:firewall AND !'Informational'"
 alert_text_args:
   - message
   - client_name
