@@ -1,0 +1,25 @@
+type: any
+alert:
+  - email
+  - slack
+index: "syslog"
+filter:
+- query:
+    query_string:
+      query: "client_name:ege AND log_source:syslog AND !category:web-advertisements AND !category:questionable AND !category:weapons AND action:block-url AND !miscellaneous:explicit.bing.net AND !miscellaneous:cdn.clear.link"
+
+alert_text_args:
+  - message
+  - client_name
+  - log_source
+  - event_type
+  - "@timestamp"
+  - miscellaneous
+  - src_ip
+
+alert_subject: "URL Block Event on your Palo Alto Device"
+alert_text: "A URL block event was detected on your Palo Alto Device.\n\nTime: {4}\nURL: {5}\nClient IP: {6}\nFull Message:\n {0}"
+alert_text_type: alert_text_only
+slack_webhook_url: https://hooks.slack.com/services/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
+email:
+  - evans.foster@iinfosec.com
