@@ -2,7 +2,7 @@
 name: EGE - Account Added to Protected Security Group
 
 # Index to search, wildcard supported
-index: beat-*
+index: beat
 
 # Type of alert.
 type: any
