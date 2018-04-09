@@ -16,10 +16,10 @@ filter:
 
 alert_subject: "Ingalls MDR Alert - Account Added to Protected Group"
 alert_text_type: alert_text_only
-alert_text: "A user was added to a globally protected security group on your domain.\n\nInformation:\nTimestamp: {0}\nComputer Name: {1}\nDomain: {2}\nAdmin User:{3}\nTarget Group:{4}\nModified User:{5}\n\nFull Event:\n{6}"
+alert_text: "A user was added to a globally protected security group on your domain.\n\nTimestamp: {0}\nComputer Name: {1}\nDomain: {2}\nAdmin User: {3}\nTarget Group: {4}\nModified User: {5}\n\n---\n\nFull Event:\n{6}"
 
 alert_text_args:
-  - timestamp
+  - '@timestamp'
   - computer_name
   - event_data.TargetDomainName
   - event_data.SubjectUserName
