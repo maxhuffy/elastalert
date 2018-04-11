@@ -22,4 +22,5 @@ alert_text: "A URL block event was detected on your Palo Alto Device.\n\nTime: {
 alert_text_type: alert_text_only
 slack_webhook_url: https://hooks.slack.com/services/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
 email:
-  - evans.foster@iinfosec.com
+  - tom.thomalla@ever-greenenergy.com
+  - monitoring@iinfosec.com

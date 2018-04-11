@@ -19,7 +19,7 @@ alert_text_type: alert_text_only
 alert_text: "A user was added to a globally protected security group on your domain.\n\nTimestamp: {0}\nComputer Name: {1}\nDomain: {2}\nAdmin User: {3}\nTarget Group: {4}\nModified User: {5}\n\n---\n\nFull Event:\n{6}"
 
 alert_text_args:
-  - '@timestamp'
+  - "@timestamp"
   - computer_name
   - event_data.TargetDomainName
   - event_data.SubjectUserName
@@ -32,6 +32,7 @@ alert:
   - slack
 
 email:
-  - evans.foster@iinfosec.com
+  - tom.thomalla@ever-greenenergy.com
+  - monitoring@iinfosec.com
 
 slack_webhook_url: https://hooks.slack.com/services/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
