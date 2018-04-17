@@ -1,0 +1,15 @@
+type: any
+alert:
+  - slack
+index: "cylance"
+filter:
+- query:
+    query_string:
+      query: "eventtype:threat AND cylancescore:>60 AND !threatclassification:Trusted AND !status:Cleared AND !status:Waived AND (status:Abnormal OR status:Unsafe)"
+alert_text_args:
+  - message
+  - client_name
+  - event_id
+alert_text: "Cylance Threat - Unsafe in client environment\nclient: {1}\nevent_id: {2}\n {0}"
+slack_webhook_url: https://hooks.slack.com/services/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
+alert_text_type: alert_text_only
