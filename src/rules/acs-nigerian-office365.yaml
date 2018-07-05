@@ -16,5 +16,4 @@ alert_text: "An Office 365 Login event was detected from Nigeria: \nUser: {0}\n 
 slack_webhook_url: https://hooks.slack.com/services/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
 alert_text_type: alert_text_only
 email:
-  - tom.thomalla@ever-greenenergy.com
   - monitoring@iinfosec.com
