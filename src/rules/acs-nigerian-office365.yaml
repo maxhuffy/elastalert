@@ -12,8 +12,10 @@ alert_text_args:
   - city
   - country
   - src_ip
-alert_text: "An Office 365 Login event was detected from Nigeria: \nUser: {0}\n City: {1}\n Country:{2}\n Source IP:{3}"
+alert_text: "An Office 365 Login event was detected from Nigeria: \nUser: {0}\n City: {1}\n Country: {2}\n Source IP: {3}"
 slack_webhook_url: https://hooks.slack.com/services/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
 alert_text_type: alert_text_only
 email:
   - monitoring@iinfosec.com
+  - secops@cancer.org
+  - services@iinfosec.com
